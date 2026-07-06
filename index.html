@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>বসন্তপুর নিম্ন মাধ্যমিক বিদ্যালয়</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF8F1;
+    --paper-line:#c7d2e8;
+    --paper-margin:#c65a4d;
+    --ink:#2B2B26;
+    --ink-soft:#5b5a4f;
+    --brick:#B23A2E;
+    --brick-dark:#8C2C22;
+    --green:#1B4332;
+    --green-light:#2f6b52;
+    --blue:#2A3F73;
+    --cork:#c9a26a;
+    --cork-dark:#a8813f;
+    --card:#ffffff;
+    --shadow: 0 10px 30px rgba(43,43,38,0.08);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Hind Siliguri', sans-serif;
+    line-height:1.7;
+  }
+  h1,h2,h3,.display{
+    font-family:'Tiro Bangla', serif;
+    font-weight:400;
+    color:var(--green);
+    margin:0;
+  }
+  .eyebrow{
+    font-family:'Noto Sans Bengali', sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.06em;
+    color:var(--brick);
+    font-weight:600;
+    display:inline-block;
+    margin-bottom:10px;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 24px;}
+
+  /* Skip link */
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--green); color:#fff;
+    padding:10px 16px; z-index:200; border-radius:0 0 6px 0;
+  }
+  .skip-link:focus{left:0;}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(251,248,241,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid rgba(27,67,50,0.12);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+  .brand-badge{
+    width:46px; height:46px; border-radius:50%;
+    background:var(--green);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Tiro Bangla',serif; font-size:1.3rem;
+    flex-shrink:0;
+    border:2px solid var(--brick);
+  }
+  .brand-name{font-family:'Tiro Bangla',serif; color:var(--green); font-size:1.25rem; line-height:1.2;}
+  .brand-name span{display:block; font-family:'Noto Sans Bengali',sans-serif; font-size:0.72rem; color:var(--ink-soft); font-weight:500; letter-spacing:0.03em;}
+
+  nav ul{
+    list-style:none; display:flex; gap:28px; margin:0; padding:0;
+  }
+  nav a{
+    text-decoration:none; color:var(--ink); font-weight:600; font-size:0.95rem;
+    position:relative; padding-bottom:4px;
+  }
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--brick);
+    transition:width 0.25s ease;
+  }
+  nav a:hover::after, nav a:focus::after{width:100%;}
+
+  .menu-toggle{
+    display:none; background:none; border:2px solid var(--green); border-radius:6px;
+    width:42px; height:38px; cursor:pointer; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+  }
+  .menu-toggle span{width:20px; height:2px; background:var(--green); display:block;}
+
+  /* Hero */
+  .hero{
+    position:relative;
+    padding:70px 0 90px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--paper-line) 38px);
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; top:0; bottom:0; left:64px; width:2px; background:var(--paper-margin); opacity:0.45;
+  }
+  .hero-inner{
+    position:relative; display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+  }
+  .hero h1{font-size:2.6rem; line-height:1.25; margin-bottom:18px;}
+  .hero p.lead{font-size:1.1rem; color:var(--ink-soft); max-width:46ch; margin-bottom:28px;}
+  .btn-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 26px; border-radius:4px; font-weight:600; text-decoration:none;
+    font-family:'Hind Siliguri',sans-serif; font-size:0.98rem;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    border:2px solid transparent;
+  }
+  .btn-primary{background:var(--brick); color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 18px rgba(178,58,46,0.35);}
+  .btn-ghost{border-color:var(--green); color:var(--green); background:transparent;}
+  .btn-ghost:hover{background:var(--green); color:#fff;}
+
+  .hero-art{
+    background:var(--green);
+    border-radius:6px;
+    aspect-ratio:4/5;
+    position:relative;
+    display:flex; align-items:flex-end;
+    padding:22px;
+    box-shadow:var(--shadow);
+    background-image:
+      linear-gradient(rgba(27,67,50,0.55), rgba(27,67,50,0.75)),
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 14px);
+  }
+  .hero-art .tag{
+    background:rgba(251,248,241,0.95); color:var(--green);
+    padding:10px 16px; border-radius:4px; font-family:'Noto Sans Bengali',sans-serif;
+    font-size:0.85rem; font-weight:600;
+  }
+
+  section{padding:80px 0;}
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-head h2{font-size:2rem;}
+  .section-head p{color:var(--ink-soft); margin-top:12px;}
+
+  /* About / timeline */
+  .about{background:var(--card); position:relative;}
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;}
+  .about-copy p{color:var(--ink-soft); margin:0 0 16px;}
+  .timeline{position:relative; padding-left:28px; border-left:2px solid rgba(27,67,50,0.2);}
+  .t-item{position:relative; padding-bottom:30px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:""; position:absolute; left:-34px; top:4px; width:12px; height:12px; border-radius:50%;
+    background:var(--brick); border:3px solid var(--paper);
+    box-shadow:0 0 0 2px var(--brick);
+  }
+  .t-year{font-family:'Tiro Bangla',serif; color:var(--brick); font-size:1.05rem;}
+  .t-item p{margin:4px 0 0; color:var(--ink-soft);}
+
+  /* Stats */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:56px;}
+  .stat{text-align:center; padding:20px 10px; border-right:1px solid rgba(27,67,50,0.12);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'Tiro Bangla',serif; font-size:2.1rem; color:var(--green);}
+  .stat .lbl{font-size:0.85rem; color:var(--ink-soft); font-family:'Noto Sans Bengali',sans-serif;}
+
+  /* Teachers */
+  .teachers{background:var(--paper);}
+  .staff-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .staff-card{
+    background:var(--card); border-radius:6px; padding:26px 20px; text-align:center;
+    box-shadow:var(--shadow); transition:transform 0.25s ease;
+    border-top:3px solid var(--green);
+  }
+  .staff-card:hover{transform:translateY(-6px);}
+  .avatar{
+    width:70px; height:70px; border-radius:50%; margin:0 auto 14px;
+    background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Tiro Bangla',serif; font-size:1.4rem;
+  }
+  .staff-card h3{font-size:1.05rem; color:var(--ink);}
+  .staff-card .role{font-family:'Noto Sans Bengali',sans-serif; font-size:0.82rem; color:var(--brick); font-weight:600; margin:4px 0 8px;}
+  .staff-card .subj{font-size:0.85rem; color:var(--ink-soft);}
+
+  /* Admission */
+  .admission{background:var(--green); color:#fff;}
+  .admission .section-head h2, .admission .eyebrow{color:#fff;}
+  .admission .section-head p{color:rgba(255,255,255,0.8);}
+  .adm-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;}
+  .adm-list{list-style:none; margin:0; padding:0;}
+  .adm-list li{
+    padding:14px 0 14px 34px; border-bottom:1px solid rgba(255,255,255,0.15);
+    position:relative; color:rgba(255,255,255,0.9);
+  }
+  .adm-list li::before{
+    content:"✓"; position:absolute; left:0; top:14px; color:var(--brick);
+    background:#fff; width:22px; height:22px; border-radius:50%; font-size:0.75rem;
+    display:flex; align-items:center; justify-content:center; font-weight:700;
+  }
+  .form-card{
+    background:#fff; color:var(--ink); border-radius:8px; padding:32px;
+    box-shadow:var(--shadow);
+  }
+  .form-card h3{color:var(--green); margin-bottom:6px;}
+  .form-note{font-size:0.85rem; color:var(--ink-soft); margin-bottom:22px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:0.88rem; font-weight:600; margin-bottom:6px; color:var(--ink);}
+  .field input, .field select, .field textarea{
+    width:100%; padding:11px 13px; border:1.5px solid #ddd6c4; border-radius:5px;
+    font-family:'Hind Siliguri',sans-serif; font-size:0.95rem; background:#fdfcf8;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:2px solid var(--green); outline-offset:1px; border-color:var(--green);
+  }
+  .form-status{font-size:0.88rem; margin-top:12px; display:none;}
+  .form-status.show{display:block;}
+
+  /* Notice board - signature element */
+  .noticeboard{
+    background: linear-gradient(var(--cork), var(--cork-dark));
+    position:relative;
+  }
+  .noticeboard .section-head h2, .noticeboard .eyebrow{color:#3a2b12;}
+  .noticeboard .section-head p{color:#4a3a1e;}
+  .board-frame{
+    border:14px solid #7a5a2c;
+    border-radius:4px;
+    padding:34px;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.06) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.07) 0, transparent 45%),
+      var(--cork);
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.25);
+  }
+  .notes-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
+  .note{
+    background:#fff9e0; padding:20px 18px 22px; box-shadow:0 6px 14px rgba(0,0,0,0.25);
+    position:relative; font-family:'Noto Sans Bengali',sans-serif;
+  }
+  .note:nth-child(1){transform:rotate(-3deg);}
+  .note:nth-child(2){transform:rotate(2deg);}
+  .note:nth-child(3){transform:rotate(-2deg); background:#e9f3e6;}
+  .note:nth-child(4){transform:rotate(3deg); background:#fde8e4;}
+  .note:hover{transform:rotate(0deg) scale(1.04); transition:transform 0.2s ease; z-index:5;}
+  .pin{
+    width:14px; height:14px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #ff8a7a, var(--brick-dark));
+    position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+    box-shadow:0 3px 4px rgba(0,0,0,0.4);
+  }
+  .note .date{font-size:0.75rem; font-weight:600; color:var(--brick); display:block; margin-bottom:8px;}
+  .note h4{font-family:'Tiro Bangla',serif; font-weight:400; font-size:1.05rem; margin:0 0 8px; color:var(--ink);}
+  .note p{font-size:0.85rem; color:var(--ink-soft); margin:0;}
+
+  /* Contact / footer */
+  footer{background:#1a1a17; color:#e8e4d8; padding:60px 0 30px;}
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; margin-bottom:40px;}
+  footer h3{color:#fff; font-size:1.1rem; margin-bottom:14px;}
+  footer p, footer li{color:#b8b3a2; font-size:0.92rem;}
+  footer ul{list-style:none; padding:0; margin:0;}
+  footer li{margin-bottom:10px;}
+  .map-box{
+    background:#26261f; border-radius:6px; height:140px;
+    display:flex; align-items:center; justify-content:center; color:#7d786a; font-size:0.85rem;
+    background-image:linear-gradient(45deg, #232320 25%, transparent 25%), linear-gradient(-45deg, #232320 25%, transparent 25%);
+    background-size:20px 20px;
+    text-align:center; padding:10px;
+  }
+  .foot-bottom{
+    border-top:1px solid #33332c; padding-top:22px; text-align:center; font-size:0.82rem; color:#847f6f;
+  }
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width: 880px){
+    nav ul{
+      position:fixed; top:74px; left:0; right:0; background:var(--paper);
+      flex-direction:column; padding:20px 24px; gap:18px;
+      border-bottom:1px solid rgba(27,67,50,0.15);
+      transform:translateY(-130%); transition:transform 0.3s ease;
+    }
+    nav ul.open{transform:translateY(0);}
+    .menu-toggle{display:flex;}
+    .hero-inner{grid-template-columns:1fr;}
+    .hero::after{left:24px;}
+    .about-grid, .adm-grid{grid-template-columns:1fr; gap:32px;}
+    .stats{grid-template-columns:repeat(2,1fr); row-gap:26px;}
+    .stat{border-right:none;}
+    .staff-grid{grid-template-columns:repeat(2,1fr);}
+    .notes-grid{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2rem;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{transition:none; opacity:1; transform:none;}
+    .note:hover, .staff-card:hover, .btn-primary:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">মূল কনটেন্টে যান</a>
+
+<header>
+  <div class="nav-inner wrap">
+    <a href="#top" class="brand">
+      <span class="brand-badge">BJSH</span>
+      <span class="brand-name">বসন্তপুর নিম্ন মাধ্যমিক বিদ্যালয়<span>চৌহালী, সিরাজগঞ্জ, রাজশাহী বিভাগ</span></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="মেনু খুলুন" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul id="navList">
+        <li><a href="#about">পরিচিতি</a></li>
+        <li><a href="#teachers">শিক্ষকমণ্ডলী</a></li>
+        <li><a href="#admission">ভর্তি</a></li>
+        <li><a href="#notice">নোটিশ</a></li>
+        <li><a href="#contact">যোগাযোগ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow">প্রতিষ্ঠাকাল ১৯৮৫ &nbsp;•&nbsp; শিক্ষায় ৪০ বছর</span>
+        <h1>জ্ঞান, নৈতিকতা ও সততার পথে <br>শিক্ষার্থী গড়ে তোলার প্রতিশ্রুতি</h1>
+        <p class="lead">বসন্তপুর নিম্ন মাধ্যমিক বিদ্যালয় প্রতিটি শিক্ষার্থীর মেধা বিকাশে নিবেদিত একটি প্রতিষ্ঠান — যেখানে পাঠ্যবইয়ের পাশাপাশি চরিত্র গঠনের ওপরও সমান গুরুত্ব দেওয়া হয়।</p>
+        <div class="btn-row">
+          <a href="#admission" class="btn btn-primary">ভর্তির তথ্য দেখুন</a>
+          <a href="#about" class="btn btn-ghost">প্রতিষ্ঠান সম্পর্কে জানুন</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <span class="tag">শিক্ষাবর্ষ ২০২৬ ভর্তি চলছে</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">পরিচিতি ও ইতিহাস</span>
+        <h2>আমাদের যাত্রা</h2>
+        <p>এই লেখাটি আপনার প্রতিষ্ঠানের প্রকৃত ইতিহাস দিয়ে পরিবর্তন করে নিন — প্রতিষ্ঠার প্রেক্ষাপট, লক্ষ্য ও উদ্দেশ্য এখানে যোগ করতে পারেন।</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <p>১৯৮৫ সালে একদল শিক্ষানুরাগী ব্যক্তির উদ্যোগে প্রতিষ্ঠিত হয় এই বিদ্যালয়। শুরুতে মাত্র কয়েকজন শিক্ষার্থী নিয়ে যাত্রা শুরু হলেও আজ এটি এলাকার একটি বিশ্বস্ত শিক্ষাপ্রতিষ্ঠান হিসেবে পরিচিত।</p>
+          <p>আমাদের লক্ষ্য শুধু ভালো ফলাফল নয়, বরং প্রতিটি শিক্ষার্থীর মধ্যে জ্ঞানপিপাসা, শৃঙ্খলাবোধ ও মানবিক মূল্যবোধ তৈরি করা।</p>
+          <div class="stats">
+            <div class="stat"><div class="num">৪০+</div><div class="lbl">বছরের অভিজ্ঞতা</div></div>
+            <div class="stat"><div class="num">৮৫০+</div><div class="lbl">শিক্ষার্থী</div></div>
+            <div class="stat"><div class="num">৩২</div><div class="lbl">শিক্ষক-শিক্ষিকা</div></div>
+            <div class="stat"><div class="num">৯৮%</div><div class="lbl">পাসের হার</div></div>
+          </div>
+        </div>
+        <div class="timeline reveal">
+          <div class="t-item"><span class="t-year">১৯৮৫</span><p>বিদ্যালয় প্রতিষ্ঠিত, প্রাথমিক শাখা চালু হয়।</p></div>
+          <div class="t-item"><span class="t-year">২০০০</span><p>মাধ্যমিক শাখা সম্প্রসারণ ও নতুন শ্রেণিকক্ষ নির্মাণ।</p></div>
+          <div class="t-item"><span class="t-year">২০১৫</span><p>নতুন ভবন ও বিজ্ঞানাগার নির্মাণ সম্পন্ন হয়।</p></div>
+          <div class="t-item"><span class="t-year">২০২৪</span><p>ডিজিটাল ক্লাসরুম ও কম্পিউটার ল্যাব চালু।</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="teachers" id="teachers">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">শিক্ষকমণ্ডলী</span>
+        <h2>যাঁদের হাতে গড়ে ওঠে ভবিষ্যৎ</h2>
+        <p>এখানে বাস্তব শিক্ষক-শিক্ষিকাদের নাম, পদবি ও ছবি যুক্ত করুন। নিচে নমুনা হিসেবে কয়েকটি কার্ড দেওয়া হলো।</p>
+      </div>
+      <div class="staff-grid reveal">
+        <div class="staff-card">
+          <div class="avatar">রহ</div>
+          <h3>জনাব আব্দুর রহিম</h3>
+          <div class="role">প্রধান শিক্ষক</div>
+          <div class="subj">সার্বিক প্রশাসন</div>
+        </div>
+        <div class="staff-card">
+          <div class="avatar">না</div>
+          <h3>নাসরিন আক্তার</h3>
+          <div class="role">সহকারী প্রধান শিক্ষক</div>
+          <div class="subj">বাংলা ও সাহিত্য</div>
+        </div>
+        <div class="staff-card">
+          <div class="avatar">কা</div>
+          <h3>কামরুল হাসান</h3>
+          <div class="role">সহকারী শিক্ষক</div>
+          <div class="subj">গণিত ও বিজ্ঞান</div>
+        </div>
+        <div class="staff-card">
+          <div class="avatar">শা</div>
+          <h3>শারমিন সুলতানা</h3>
+          <div class="role">সহকারী শিক্ষিকা</div>
+          <div class="subj">ইংরেজি</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="admission" id="admission">
+    <div class="wrap adm-grid">
+      <div class="reveal">
+        <span class="eyebrow">ভর্তি তথ্য</span>
+        <h2 class="section-head" style="margin-bottom:20px;">শিক্ষাবর্ষ ২০২৬-এর জন্য ভর্তি চলছে</h2>
+        <ul class="adm-list">
+          <li>প্রথম শ্রেণি থেকে দশম শ্রেণি পর্যন্ত ভর্তি চলছে</li>
+          <li>ভর্তি ফরম বিদ্যালয় অফিস থেকে সংগ্রহ করা যাবে</li>
+          <li>প্রয়োজনীয় কাগজপত্র: জন্মনিবন্ধন সনদ ও পূর্ববর্তী রেজাল্ট কার্ড</li>
+          <li>ভর্তি পরীক্ষার তারিখ ও সময় নোটিশ বোর্ডে জানিয়ে দেওয়া হবে</li>
+        </ul>
+      </div>
+      <div class="form-card reveal">
+        <h3>অনলাইনে আগ্রহ জানান</h3>
+        <p class="form-note">এই ফর্মটি এখন শুধু নমুনা ডিজাইন হিসেবে আছে — সত্যিকারের ভর্তি আবেদন কাজ করার জন্য এটিকে ইমেইল বা ডেটাবেজের সাথে যুক্ত করতে হবে।</p>
+        <form id="admForm">
+          <div class="field">
+            <label for="sName">শিক্ষার্থীর নাম</label>
+            <input type="text" id="sName" required>
+          </div>
+          <div class="field">
+            <label for="sClass">ভর্তি হতে ইচ্ছুক শ্রেণি</label>
+            <select id="sClass">
+              <option>প্রথম শ্রেণি</option>
+              <option>ষষ্ঠ শ্রেণি</option>
+              <option>নবম শ্রেণি</option>
+              <option>অন্যান্য</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="gPhone">অভিভাবকের মোবাইল নম্বর</label>
+            <input type="tel" id="gPhone" required>
+          </div>
+          <div class="field">
+            <label for="msg">অতিরিক্ত বার্তা (ঐচ্ছিক)</label>
+            <textarea id="msg" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">তথ্য পাঠান</button>
+          <p class="form-status" id="formStatus"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="noticeboard" id="notice">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">নোটিশ ও ইভেন্ট</span>
+        <h2>নোটিশ বোর্ড</h2>
+        <p>সর্বশেষ নোটিশ ও অনুষ্ঠানের তথ্য এখানে নিয়মিত হালনাগাদ করা যাবে।</p>
+      </div>
+      <div class="board-frame reveal">
+        <div class="notes-grid">
+          <div class="note"><span class="pin"></span><span class="date">১০ জুলাই, ২০২৬</span><h4>ভর্তি বিজ্ঞপ্তি</h4><p>২০২৬ শিক্ষাবর্ষের ভর্তি আবেদন শুরু হয়েছে। শেষ তারিখ ৩১ জুলাই।</p></div>
+          <div class="note"><span class="pin"></span><span class="date">২০ জুলাই, ২০২৬</span><h4>বার্ষিক ক্রীড়া প্রতিযোগিতা</h4><p>বিদ্যালয় মাঠে সকাল ৯টা থেকে অনুষ্ঠিত হবে।</p></div>
+          <div class="note"><span class="pin"></span><span class="date">২৫ জুলাই, ২০২৬</span><h4>অভিভাবক সমাবেশ</h4><p>সকল অভিভাবকদের উপস্থিত থাকার অনুরোধ করা হলো।</p></div>
+          <div class="note"><span class="pin"></span><span class="date">০৫ আগস্ট, ২০২৬</span><h4>অর্ধবার্ষিক ফলাফল প্রকাশ</h4><p>ফলাফল বিদ্যালয় অফিস ও নোটিশ বোর্ডে পাওয়া যাবে।</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>বসন্তপুর নিম্ন মাধ্যমিক বিদ্যালয়</h3>
+        <p>চৌহালী, সিরাজগঞ্জ, রাজশাহী বিভাগ, বাংলাদেশ। প্রতিটি শিক্ষার্থীর সুন্দর ভবিষ্যৎ গড়তে আমরা প্রতিশ্রুতিবদ্ধ।</p>
+      </div>
+      <div>
+        <h3>যোগাযোগ</h3>
+        <ul>
+          <li>ফোন: ০১৭XXXXXXXX</li>
+          <li>ইমেইল: info@yourschool.edu.bd</li>
+          <li>ঠিকানা: এখানে বিদ্যালয়ের প্রকৃত ঠিকানা লিখুন</li>
+        </ul>
+      </div>
+      <div>
+        <h3>মানচিত্র</h3>
+        <div class="map-box">এখানে Google Maps embed যুক্ত করা যাবে</div>
+      </div>
+    </div>
+    <div class="foot-bottom">© ২০২৬ বসন্তপুর নিম্ন মাধ্যমিক বিদ্যালয়। সকল অধিকার সংরক্ষিত। (নমুনা ওয়েবসাইট)</div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navList = document.getElementById('navList');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = navList.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navList.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const form = document.getElementById('admForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    status.textContent = 'ধন্যবাদ! (এটি একটি নমুনা ফর্ম — প্রকৃত ডেটা সংরক্ষণের জন্য ব্যাকএন্ড যুক্ত করতে হবে।)';
+    status.classList.add('show');
+    form.reset();
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
